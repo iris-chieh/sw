@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Season</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+        /* 初期化瀏覽器設定*/
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*裝飾背景設定：覆蓋瀏覽器尺寸、置中、視域高度高*/
+        .snow-container {
+            background-image: url("images/christmas.jpg");
+            width: 100%;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*裝飾背景設定：黑色漸層*/
+        .snow-container::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .snow-container h1 {
+            color: white;
+            font-size: 8rem;
+            text-shadow: 1px 2px 15px black;
+            z-index: 2;
+        }
+
+        /*下雪設定：白色、圓形、相對於父元素背景為絕對值*/
+        .snow {
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            animation: snowFall 10s linear;
+            z-index: 2;
+        }
+
+        @keyframes snowFall {
+
+            /*開始時在最上面的位置 全透明*/
+            0% {
+                opacity: 0;
+                top: 0;
+                transform: translateX(5px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateX(-5px);
+            }
+
+            30% {
+
+                transform: translateX(5px);
+            }
+
+            40% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            /*結束時消失 從最上面0的位置抵達視高百分百*/
+            100% {
+                opacity: 0;
+                top: 100vh;
+            }
+        }
+    </style>
+    <style type="text/css">
+        body {
+            background-color: black;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    /* 修改图像大小 */
+    img {
+        max-width: 100%; /* 图像最大宽度为父元素的100% */
+        height: auto; /* 保持宽高比例 */
+        position: absolute;
+        top: 20%; /* 距离父元素顶部的距离 */
+        left: 20%; /* 距离父元素左侧的距离 */
+    }
+
+    /* 调整文本的字体大小 */
+    .fade-in-text,
+    .fade-in-text2 {
+        font-size: 6vw; /* 使用vw单位根据视口宽度调整字体大小 */
+    }
+
+    /* 如果需要在较小的屏幕上调整其他样式，请使用媒体查询 */
+    @media (max-width: 767px) {
+        /* 在小屏幕上的样式调整 */
+        .fade-in-text,
+        .fade-in-text2 {
+            font-size: 12px; /* 适当调整字体大小 */
+        }
+
+        img {
+            top: 10%; /* 在小屏幕上调整图像位置 */
+            left: 10%;
+        }
+    }
+        .fade-in-text,
+        .fade-in-text2 {
+            font-size: 6vw; /* 使用vw单位根据视口宽度调整字体大小 */
+        }
+
+        @media (max-width: 767px) {
+            /* 在小屏幕上的样式调整 */
+            .fade-in-text,
+            .fade-in-text2 {
+                font-size: 12px; /* 适当调整字体大小 */
+            }
+        }
+    </style>
+
+    <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .fade-in-text {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      font-size: 22px;/* 設定字體大小 */
+      color: white;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2; /* 设置文字浮现的层级 */
+    }
+
+    .fade-in-text2 {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2; 
+    }
+    /* 修改图像大小 */
+    img {
+      width: 600px; /* 调整图像宽度 */
+      height: auto; /* 保持宽高比例 */
+      position: absolute; /* 设置绝对定位 */
+      top: 30%; /* 距离父元素顶部的距离 */
+      left: 30%; /* 距离父元素左侧的距离 */
+    }
+  </style>
+</head>
+
+<body>
+    <section class="snow-container">
+        
+    </section>
+    <script>
+        /*下雪區域*/
+        let snowContainer = document.querySelector(".snow-container");
+
+        /*下雪特效製作*/
+        const createSnow = () => {
+            let snow = document.createElement("span");
+            snow.className = "snow";
+            minSize = 5;
+            maxSize = 10;
+            /*雪隨機生成大小*/
+            let snowSize = Math.random() * (maxSize - minSize) + minSize;
+
+            snow.style.width = snowSize + "px";
+            snow.style.height = snowSize + "px";
+
+            /*雪隨機生成降下位置*/
+            snow.style.left = Math.random() * 100 + "%";
+
+            snowContainer.appendChild(snow);
+
+            /*十秒後雪特效消失*/
+            setTimeout(() => {
+                snow.remove();
+            }, 10000);
+        };
+
+        /*呼叫下雪特效*/
+        setInterval(createSnow, 100);
+    </script>
+    <img src="chtree.png">
+
+    <div class="fade-in-text" id="text1">
+    <p>祝弘穎、可芸</p>
+  </div>
+
+  <div class="fade-in-text2" id="text2">
+    <p>以及大家聖誕節快樂!!</p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var text1 = document.getElementById("text1");
+      var text2 = document.getElementById("text2");
+
+      // Initial fade-in
+      setTimeout(function() {
+        text1.style.opacity = 1;
+      }, 1000); // Adjust the delay as needed
+
+      // Second paragraph appears after a delay
+      setTimeout(function() {
+        text2.style.opacity = 1;
+      }, 3000); // Adjust the delay as needed
+    });
+  </script>
+
+    </body>
+
+</html>
